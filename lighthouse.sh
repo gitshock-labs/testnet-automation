@@ -1,3 +1,10 @@
+#!/bin/bash
+set-x
+
+echo "
+█▀▀ ▄▀█ █▀█ ▀█▀ █▀▀ █▄░█ ▀█   █░░ █ █▀▀ █░█ ▀█▀ █░█ █▀█ █░█ █▀ █▀▀
+█▄▄ █▀█ █▀▄ ░█░ ██▄ █░▀█ █▄   █▄▄ █ █▄█ █▀█ ░█░ █▀█ █▄█ █▄█ ▄█ ██▄"
+
 NodesCount=2
 LogLevel=info
 ######## Checker Functions ########
@@ -112,14 +119,14 @@ function RunBeacon() {
 	nohup lighthouse beacon \
 	  --http \
 	  --eth1 \
-       	  --http-address "http://127.0.0.1" \
-       	  --http-allow-sync-stalled \
-       	  --execution-endpoints "http://127.0.0.1:$((8551 + $1))" \
-       	  --http-port=$((5052 + $1)) \
-       	  --enr-udp-port=$((9000 + $1)) \
-       	  --enr-tcp-port=$((9000 + $1)) \
-       	  --discovery-port=$((9000 + $1)) \
-       	  --port=$((9000 + $1)) \
+	  --http-address "http://127.0.0.1" \
+	  --http-allow-sync-stalled \
+	  --execution-endpoints "http://127.0.0.1:$((8551 + $1))" \
+	  --http-port=$((5052 + $1)) \
+	  --enr-udp-port=$((9000 + $1)) \
+	  --enr-tcp-port=$((9000 + $1)) \
+	  --discovery-port=$((9000 + $1)) \
+	  --port=$((9000 + $1)) \
 	  --testnet-dir "./data/consensus/$1" \
 	  --datadir "./data/exeecution/$1" \
 	  --jwt-secrets="./jwt.hex/$1" \
@@ -176,7 +183,7 @@ ImportGethAccount
 PrepareEnvironment
 RunGeth 1
 InitGeth 1
-RunValidator 1
+#RunValidator 1
 
 #RunStaker
 
