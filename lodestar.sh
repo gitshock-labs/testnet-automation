@@ -101,7 +101,7 @@ function RunBeacon() {
 	local bootnodes=`cat consensus/bootnodes.txt 2>/dev/null | grep . | tr '\n' ',' | sed s/,$//g`
 	echo "Your Ethereum Node Records = $bootnodes"
 	
-	nohup lodestar beacon \
+	nohup clients/lodestar beacon \
 	  --suggestedFeeRecipient "0x8082cf33365f53195a46c839b47131acb6f1af45" \
 	  --execution.urls "http://127.0.0.1:$((8551 + $1))" \
 	  --jwt-secret "./data/execution/$1/geth/jwtsecret" \
@@ -131,7 +131,7 @@ function RunValidator()
 	Log "Start Running Your Validators $1"
 	#cp -R consensus/validator_keys consensus/validator_keys_$1
 	cp -R validator_keys validator_keys_$1
-	nohup lodestar validator \
+	nohup clients/lodestar validator \
 	  --dataDir "./data/consensus/$1" \
 	  --beaconNodes "http://127.0.0.1:$((9596 + $1))" \
 	  --suggestedFeeRecipient "0x8082cf33365f53195a46c839b47131acb6f1af45" \
